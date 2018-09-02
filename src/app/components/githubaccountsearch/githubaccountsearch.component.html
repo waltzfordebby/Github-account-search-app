@@ -1,0 +1,66 @@
+<div class="container text-center mt-5">
+	<form>
+		<div class="form-group">
+			<input type="text" name="" class="form-control" placeholder="Enter github username" [(ngModel)] = "username" name="username" (keyup.enter)="search()">
+		</div>
+	</form>
+</div>
+
+<div *ngIf="user" class="container text-center mt-5 mb-5">
+	 <div class="row">
+	 	<div class="col-sm-6">
+	 		<h3 class="text-left">Profile</h3>
+	 		<div class="card mt-4">
+	 			<img class="card-img-top" src="{{user.avatar_url}}" alt="Card image cap">
+	 			<div class="card-body">
+	 				<h5 class="card-title">{{user.name}}</h5>
+	 				<h6 class="card-subtitle mb-2 text-muted">Username: {{user.login}}</h6>
+	 				<h6 class="card-subtitle mb-2 text-muted">Location: {{user.location}}</h6>
+	 				<h6 class="card-subtitle mb-2 text-muted">Email: {{user.email}}</h6>
+	 				<h6 class="card-subtitle mb-2 text-muted">Member since: {{user.created_at}}</h6>
+	 				<div class="mt-4">
+	 					 <span class="badge badge-pill badge-primary mr-3">Public Repos {{user.public_repos}}</span>
+						 <span class="badge badge-pill badge-secondary mr-3">Public Gist {{user.public_gists}}</span>
+						 <span class="badge badge-pill badge-success mr-3">Followers {{user.followers}}</span>
+						 <span class="badge badge-pill badge-danger">Following {{user.following}}</span>
+	 				</div>
+	 				<div class="mt-4">
+	 					<h4 class="text-left">Bio</h4>
+	 					<p class="card-text mt-2">{{user.bio}}</p>
+	 				</div>
+	 			</div>
+	 		</div>
+	 	</div>
+	 	<div *ngIf="repos" class="col-sm-6">
+	 		<h3 class="text-left">{{user.name}} Repo's</h3>
+	 		<div *ngFor ="let repo of repos" class="card mt-4">
+	 			<div  class="card-body">
+	 				<h5 class="card-title"><a href="{{repo.html_url}}" target="_blank">{{repo.name}}</a></h5>
+	 				<div class="card-text mt-5">
+	 					<h6 class="text-muted text-left">Description</h6>
+	 					<p>{{repo.description}}</p>
+	 				</div>
+	 			</div>
+	 			<div>
+	 				 <ul class="list-group list-group-flush">
+	 				  <hr>
+					  <li class="list-group-item d-flex justify-content-between align-items-center">
+					    <strong>Stars</strong>
+					    <span class="badge badge-info badge-pill">{{repo.stargazers_count}}</span>
+					  </li>
+					  <li class="list-group-item d-flex justify-content-between align-items-center">
+					    <strong>Fork</strong>
+					    <span class="badge badge-secondary badge-pill">{{repo.forks}}</span>
+					  </li>
+					  <li class="list-group-item d-flex justify-content-between align-items-center">
+					    <strong>Watchers</strong>
+					    <span class="badge badge-warning badge-pill">{{repo.watchers}}</span>
+					  </li>
+					</ul>
+	 			 </div>
+	 		</div>
+	 	</div>
+	 </div>
+</div>
+
+
